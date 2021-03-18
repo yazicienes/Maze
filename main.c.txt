@@ -1,0 +1,35 @@
+int (*visited)[M] = malloc(sizeof(int[N][M]));//initialize this to all false
+int (*res)[M] = malloc(sizeof(int[N][M]));//initialize this to all false
+
+void printRes(int res[N][M]){
+	for (int i=0;i<N; i++){
+		for (int j=0;j<M;j++){
+			if (res[N][M]){
+				printf("%d,%d ",x,y);
+			}
+		}
+		printf("\n");
+	}
+	
+}
+
+bool solveMaze(int Maze[n][n], int x, int y){
+	if (x<0 || y<0 || x>9 || y>9 || Maze[x][y]==1 || visited[x][y]){
+		return false;
+	}
+	if (x==9 && y==9){
+		visited[x][y]=true;
+		res[x][y]=true;
+		return true;
+	}
+	bool left = solveMaze(Maze[n][n], x, y-1);
+	bool right = solveMaze(Maze[n][n], x, y+1);
+	bool up = solveMaze(Maze[n][n], x-1, y);
+	bool down = solveMaze(Maze[n][n], x+1, y);
+	if (left || right ||up || down){
+		res[x][y]=true;
+		visited[x][y]=true;
+		return true;
+	}
+	return false;
+}
